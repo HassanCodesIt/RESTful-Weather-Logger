@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 24px 32px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+h1 {
+    text-align: center;
+    margin-bottom: 24px;
+}
+.weather-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+.weather-form input[type="text"] {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.weather-form button {
+    padding: 8px 16px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.weather-form button:hover {
+    background: #0056b3;
+}
+.weather-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+}
+.weather-table th, .weather-table td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+.weather-table tr.recent {
+    background: #e3f2fd;
+    font-weight: bold;
+}
+@media (max-width: 600px) {
+    .container {
+        padding: 12px 4px;
+    }
+    .weather-form {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .weather-table th, .weather-table td {
+        padding: 6px;
+    }
+} 

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Logger</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Weather Logger</h1>
+        <h2>Weather for Default Cities</h2>
+        <table class="weather-table">
+            <thead>
+                <tr>
+                    <th>City</th>
+                    <th>Timestamp</th>
+                    <th>Weather</th>
+                    <th>Temp (°C)</th>
+                    <th>Humidity (%)</th>
+                    <th>Wind (m/s)</th>
+                    <th>Cloudiness (%)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in weather_logs %}
+                <tr class="{% if loop.index0 == 0 %}recent{% endif %}">
+                    <td>{{ entry.city }}</td>
+                    <td>{{ entry.timestamp }}</td>
+                    <td>
+                        {% if entry.error %}
+                            <span style="color: red; font-weight: bold;">{{ entry.error }}</span>
+                        {% else %}
+                            {% if entry.icon %}<img src="{{ entry.icon }}" alt="icon" style="height:32px;vertical-align:middle;">{% endif %}
+                            {{ entry.description }}
+                        {% endif %}
+                    </td>
+                    <td>{% if not entry.error %}{{ entry.temperature }}{% endif %}</td>
+                    <td>{% if not entry.error %}{{ entry.humidity }}{% endif %}</td>
+                    <td>{% if not entry.error %}{{ entry.wind_speed }}{% endif %}</td>
+                    <td>{% if not entry.error %}{{ entry.cloudiness }}{% endif %}</td>
+                </tr>
+                {% else %}
+                <tr><td colspan="7">No entries yet.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html> 
