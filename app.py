@@ -4,44 +4,31 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-# RapidAPI credentials (new key)
-RAPIDAPI_KEY = "417d687e53msh5101a2846c2e74ap1c6754jsne544b3821492"
-RAPIDAPI_HOST = "weather-api167.p.rapidapi.com"
+# WeatherAPI.com credentials
+WEATHERAPI_KEY = "691e916ce1f14924a9a165111251007"
 
 # List of default cities
 DEFAULT_CITIES = ["London", "New York", "Tokyo", "Paris", "Sydney"]
 
 def fetch_weather(city):
-    url = f"https://weather-api167.p.rapidapi.com/api/weather/current?place={city}&units=metric&lang=en&mode=json"
-    headers = {
-        "x-rapidapi-key": RAPIDAPI_KEY,
-        "x-rapidapi-host": RAPIDAPI_HOST,
-        "Accept": "application/json"
-    }
+    url = f"http://api.weatherapi.com/v1/current.json?key={WEATHERAPI_KEY}&q={city}"
     try:
-        response = requests.get(url, headers=headers, timeout=10)
+        response = requests.get(url, timeout=10)
         if response.status_code != 200:
             return {"city": city.title(), "error": f"API error: {response.status_code}"}
         data = response.json()
-        if not data or ("cod" in data and data["cod"] != 200):
-            return {"city": city.title(), "error": "Invalid city or data not found."}
-        # Extract relevant fields
-        weather = data.get("weather", [{}])[0]
-        main = data.get("main", {})
-        wind = data.get("wind", {})
-        clouds = data.get("clouds", {})
-        icon_url = weather.get("icon")
-        if icon_url and not icon_url.startswith("http"):
-            icon_url = f"https://openweathermap.org/img/wn/{icon_url}@2x.png"
+        current = data.get("current", {})
+        condition = current.get("condition", {})
+        location = data.get("location", {})
         return {
-            "city": city.title(),
-            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "description": weather.get("description", "N/A").title(),
-            "icon": icon_url,
-            "temperature": main.get("temprature"),
-            "humidity": main.get("humidity"),
-            "wind_speed": wind.get("speed"),
-            "cloudiness": clouds.get("cloudiness"),
+            "city": location.get("name", city.title()),
+            "timestamp": current.get("last_updated"),
+            "description": condition.get("text"),
+            "icon": "https:" + condition.get("icon") if condition.get("icon") else None,
+            "temperature": current.get("temp_c"),
+            "humidity": current.get("humidity"),
+            "wind_speed": current.get("wind_kph"),
+            "cloudiness": current.get("cloud"),
             "error": None
         }
     except Exception as e:
