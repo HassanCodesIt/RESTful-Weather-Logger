@@ -3,7 +3,7 @@
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/Flask-2.x-lightgrey?logo=flask)](https://flask.palletsprojects.com/)
 [![REST API](https://img.shields.io/badge/REST%20API-Enabled-brightgreen)](https://en.wikipedia.org/wiki/Representational_state_transfer)
-[![RapidAPI](https://img.shields.io/badge/RapidAPI-Weather-blue?logo=rapidapi)](https://rapidapi.com/)
+[![WeatherAPI.com](https://img.shields.io/badge/WeatherAPI.com-Weather-blue?logo=cloud)](https://www.weatherapi.com/)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -12,7 +12,7 @@
 
 ## 🚀 Project Overview
 
-**RESTful Weather Logger** is a full-stack web application that demonstrates the power of REST APIs. It allows users to view real-time weather data for multiple cities, fetched from a third-party weather API via RapidAPI. The backend is built with Flask and exposes its own RESTful endpoints, making it a perfect project to showcase on your resume as a REST API implementation.
+**RESTful Weather Logger** is a full-stack web application that demonstrates the power of REST APIs. It allows users to view real-time weather data for multiple cities, fetched from [WeatherAPI.com](https://www.weatherapi.com/). The backend is built with Flask and exposes its own RESTful endpoints, making it a perfect project to showcase on your resume as a REST API implementation.
 
 ---
 
@@ -20,7 +20,7 @@
 
 - **Backend:** [Flask](https://flask.palletsprojects.com/) (Python)
 - **Frontend:** HTML5, CSS3 (Jinja2 templating)
-- **REST API Consumption:** [RapidAPI Weather API](https://rapidapi.com/)
+- **Weather Data Provider:** [WeatherAPI.com](https://www.weatherapi.com/)
 - **REST API Exposure:** Custom Flask endpoints returning JSON
 - **Other:** Requests, Jinja2
 
@@ -54,12 +54,12 @@ Returns weather data for all default cities.
   {
     "city": "London",
     "timestamp": "2025-07-10 20:37:36",
-    "description": "Few clouds",
-    "icon": "https://openweathermap.org/img/wn/02d@2x.png",
+    "description": "Partly cloudy",
+    "icon": "https://cdn.weatherapi.com/weather/64x64/day/116.png",
     "temperature": 20.5,
     "humidity": 60,
-    "wind_speed": 3.2,
-    "cloudiness": 21,
+    "wind_speed": 13.0,
+    "cloudiness": 75,
     "error": null
   },
   ...
@@ -87,10 +87,9 @@ Returns weather data for a specific city.
    pip install -r requirements.txt
    ```
 
-3. **Set your RapidAPI credentials in `app.py`:**
+3. **Set your WeatherAPI.com credentials in `app.py`:**
    ```python
-   RAPIDAPI_KEY = "your_rapidapi_key"
-   RAPIDAPI_HOST = "weather-api167.p.rapidapi.com"
+   WEATHERAPI_KEY = "your_weatherapi_key"
    ```
 
 4. **Run the app:**
@@ -134,11 +133,15 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## ✨ Credits
 
-- [RapidAPI Weather API](https://rapidapi.com/)
+- [WeatherAPI.com](https://www.weatherapi.com/)
 - [Flask](https://flask.palletsprojects.com/)
-- [OpenWeatherMap Icons](https://openweathermap.org/weather-conditions)
+- [WeatherAPI.com Icons](https://www.weatherapi.com/docs/weather_conditions.json)
 
 ---
 
 > _Showcase your REST API skills with this project!_  
-> _Perfect for resumes, portfolios, and learning full-stack development._ 
+> _Perfect for resumes, portfolios, and learning full-stack development._
+
+---
+
+Powered by [WeatherAPI.com](https://www.weatherapi.com/) 
